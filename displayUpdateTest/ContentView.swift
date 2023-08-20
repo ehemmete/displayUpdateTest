@@ -13,9 +13,16 @@ struct ContentView: View {
         VStack {
             Text(display.displayOutput)
             Button("Update") {
-                display.append(newText: Functions.update1())
-                display.append(newText: Functions.update2())
-                display.append(newText: Functions.update3())
+                Task {
+                    let results1 = try await Functions.update1()
+                    display.append(newText: results1)
+                    
+                    let results2 = try await Functions.update2()
+                    display.append(newText: results2)
+                    
+                    let results3 = try await Functions.update3()
+                    display.append(newText: results3)
+                }
             }
         }
         .padding()
